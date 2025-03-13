@@ -1,0 +1,19 @@
+server:
+  port: 80
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb  # 使用 H2 内存数据库
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+    dialect: org.hibernate.dialect.H2Dialect
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+amap:
+  key: e9708c18d6654c4c0f7c183ccb6bab15
+  geocode-url: https://restapi.amap.com/v3/geocode/geo
+  regeocode-url: https://restapi.amap.com/v3/geocode/regeo 

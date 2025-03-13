@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地址管理系统</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>地址管理系统</h1>
+
+    <!-- IP归属地查询 -->
+    <section>
+        <h2>IP 归属地查询</h2>
+        <input type="text" id="ipInput" placeholder="请输入IP地址" value="218.19.0.143"/>
+        <button onclick="queryIpLocation()">查询</button>
+        <p id="ipResult"></p>
+    </section>
+
+    <!-- 地址解析 -->
+    <section>
+        <h2>地址解析</h2>
+        <textarea id="addressText"
+                  placeholder="请输入地址文本">上海市浦东新区陆家嘴金融街1号 18818800100 李四</textarea>
+        <button onclick="parseAddress()">解析地址</button>
+        <div id="parsedResult"></div>
+    </section>
+
+    <!-- 地址经纬度查询 -->
+    <section>
+        <h2>地理编码</h2>
+        <input type="text" id="addressInput" placeholder="请输入地址" value="北京市朝阳区"/>
+        <button onclick="geocode()">获取经纬度</button>
+        <p id="geoResult"></p>
+    </section>
+
+    <!-- 经纬度反查 -->
+    <section>
+        <h2>逆地理编码</h2>
+        <input type="text" id="latitude" placeholder="纬度" value="39.9042"/>
+        <input type="text" id="longitude" placeholder="经度" value="116.4074"/>
+        <button onclick="reGeocode()">获取详细地址</button>
+        <p id="regeoResult"></p>
+    </section>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+name: Deploy Spring Boot to Sealos
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Build and Push Docker Image with Jib
+        run: |
+          mvn clean package jib:build -DskipTests \
+            -Djib.to.auth.username=${{ secrets.DOCKER_USERNAME }} \
+            -Djib.to.auth.password=${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      - name: Configure Kubeconfig
+        run: |
+          echo "${{ secrets.KUBECONFIG }}" > kubeconfig
+          export KUBECONFIG=$(pwd)/kubeconfig
+
+      - name: Update Deployment Image in Sealos
+        run: |
+          kubectl set image deployment/my-app my-app-container=my-docker-repo/my-app:latest -n my-namespace
+          kubectl rollout status deployment/my-app -n my-namespace
+
+      - name: Clean up
+        run: rm -f kubeconfig
