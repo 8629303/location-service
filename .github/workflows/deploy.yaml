@@ -54,7 +54,7 @@ jobs:
 
       - name: Update Deployment Image in Sealos
         run: |
-          kubectl set image deployment/test test-65fb8fd984-kd9nr=lsx8629303/location-service:latest
+          kubectl set image deployment/test test=lsx8629303/location-service:latest
           kubectl rollout status deployment/test
 
       - name: Clean up
