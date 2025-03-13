@@ -50,7 +50,6 @@ jobs:
 
       - name: Verify Kubernetes Connection
         run: |
-          kubectl cluster-info
           kubectl get nodes
 
       - name: Update Deployment Image in Sealos
