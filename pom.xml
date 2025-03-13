@@ -64,12 +64,6 @@
             <version>2.2.224</version>
         </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>mysql</groupId>-->
-        <!--            <artifactId>mysql-connector-java</artifactId>-->
-        <!--            <version>8.0.33</version>-->
-        <!--            <scope>runtime</scope>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>com.hankcs</groupId>
             <artifactId>hanlp</artifactId>
@@ -97,8 +91,8 @@
                         <image>registry.hub.docker.com/lsx8629303/${project.name}</image>
                         <!-- 连接仓库的账号密码 -->
                         <auth>
-                            <username>8629303@qq.com</username>
-                            <password>liusuixing</password>
+                            <username>${docker.username}</username>
+                            <password>${docker.password}</password>
                         </auth>
                     </to>
                     <allowInsecureRegistries>true</allowInsecureRegistries>
