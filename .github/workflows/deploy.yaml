@@ -47,15 +47,15 @@ jobs:
 #        run: |
 #          echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
 #          kubectl config view
-
-      - name: Verify Kubernetes Connection
-        run: |
-          kubectl get nodes
+#
+#      - name: Verify Kubernetes Connection
+#        run: |
+#          kubectl get nodes
 
       - name: Update Deployment Image in Sealos
         run: |
-          kubectl set image deployment/hello-world-1 hello-world-1-container=lsx8629303/location-service:latest -n default
-          kubectl rollout status deployment/hello-world-1 -n default
+          kubectl set image deployment/test test-container=lsx8629303/location-service:latest
+          kubectl rollout status deployment/test
 
       - name: Clean up
         run: rm -f kubeconfig
