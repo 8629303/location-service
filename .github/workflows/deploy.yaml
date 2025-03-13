@@ -20,11 +20,11 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
 
-      - name: Build and Push Docker Image with Jib
-        run: |
-          mvn clean package jib:build -DskipTests \
-            -Djib.to.auth.username=${{ secrets.DOCKER_USERNAME }} \
-            -Djib.to.auth.password=${{ secrets.DOCKER_PASSWORD }}
+#      - name: Build and Push Docker Image with Jib
+#        run: |
+#          mvn clean package jib:build -DskipTests \
+#            -Djib.to.auth.username=${{ secrets.DOCKER_USERNAME }} \
+#            -Djib.to.auth.password=${{ secrets.DOCKER_PASSWORD }}
 
       - name: Set up kubectl
         uses: azure/setup-kubectl@v3
@@ -47,7 +47,8 @@ jobs:
       - name: Update Deployment Image in Sealos
         run: |
           kubectl set image deployment/test test=lsx8629303/location-service:latest
-          kubectl rollout status deployment/test
+          kubectl rollout restart deployment/test
+#          kubectl rollout status deployment/test
 
       - name: Clean up
         run: rm -f kubeconfig
