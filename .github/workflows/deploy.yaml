@@ -38,8 +38,8 @@ jobs:
 
       - name: Update Deployment Image in Sealos
         run: |
-          kubectl set image deployment/my-app my-app-container=my-docker-repo/my-app:latest -n my-namespace
-          kubectl rollout status deployment/my-app -n my-namespace
+          kubectl set image deployment/hello-world-1 hello-world-1-container=lsx8629303/location-service:latest -n default
+          kubectl rollout status deployment/hello-world-1 -n default
 
       - name: Clean up
         run: rm -f kubeconfig
